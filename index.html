@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>My Website</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      background: #ffe6f0;
+      color: #2f3640;
+      overflow-x: hidden;
+    }
+    .bubbles {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      overflow: hidden;
+      z-index: -1;
+    }
+
+    .bubble {
+      position: absolute;
+      bottom: -150px;
+      background: rgba(255, 182, 193, 0.6); 
+      border-radius: 50%;
+      animation: rise 20s infinite ease-in;
+    }
+
+    @keyframes rise {
+      0% {
+        transform: translateY(0) scale(1);
+        opacity: 1;
+      }
+      100% {
+        transform: translateY(-120vh) scale(1.5);
+        opacity: 0;
+      }
+    }
+
+    nav {
+      background: #ff99cc;
+      padding: 15px;
+      display: flex;
+      justify-content: center;
+      gap: 100px; 
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+    }
+
+    nav a {
+      color: white;
+      text-decoration: none;
+      font-weight: bold;
+      transition: 0.3s;
+    }
+
+    nav a:hover {
+      color: #6d214f;
+    }
+    section {
+      display: none;
+      padding: 50px 20px;
+      min-height: 80vh;
+      animation: fadeIn 0.7s ease-in-out;
+    }
+
+    section.active {
+      display: block;
+    }
+    @keyframes fadeIn {
+      from {opacity: 0; transform: translateY(20px);}
+      to {opacity: 1; transform: translateY(0);}
+    }
+    .profile-pic {
+      width: 200px;
+      height: 200px;
+      border-radius: 50%;
+      display: block;
+      margin: 20px auto;
+      border: 5px solid black; 
+    }
+    .card {
+   text-align:center;
+   justify-content:center;
+  background: white;
+  padding: 40px;       
+  margin: 25px auto;      
+  max-width: 800px;     
+  font-size: 1.2rem;      
+  border-radius: 16px;     
+  box-shadow: 0 6px 15px rgba(0,0,0,0.15);
+  transition: transform 0.3s, background-color 0.3s, color 0.3s;
+  color: black;
+}
+
+
+    .card:hover {
+      transform: scale(1.03);
+      background: black;  
+      color: white;     
+    }
+
+    h1, h2 {
+      text-align: center;
+      color: #c44569;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="bubbles"></div>
+  <nav>
+    <a href="#" onclick="showPage('about')">About Me</a>
+    <a href="#" onclick="showPage('education')">Education</a>
+    <a href="#" onclick="showPage('hobbies')">Hobbies</a>
+  </nav>
+  <section id="about" class="active">
+    <h1>About Me</h1>
+    <img src="prof.jpg" alt="My Picture" class="profile-pic">
+    <div class="card">
+      <p>Hello! I am Leimapokpam Shenita Devi. Welcome to my personal website.I hope that someday I can find meaning in my mere existence. I enjoy helping people and believe that life is an inescapable black hole of greed, which can only be overcome with kindness and, ultimately, death.</p>
+    </div>
+  </section>
+
+
+  <section id="education">
+    <h1>Education</h1>
+    <div class="card">
+      <h2>College</h2>
+      <p>Currently pursuing B-tech in Computer Science from IIIT Manipur.</p>
+    </div>
+    <div class="card">
+      <h2>Achievements</h2>
+      <p>
+      <p> Participated in various hackathons and also reached till finale.</p>
+      <p> Helped in organising various college events.</p>
+      <p>Survived the JEE rat race and hectic college schedule along with chronic depression.</p>
+      </p>
+    </div>
+  </section>
+  <section id="hobbies">
+    <h1>Hobbies</h1>
+    <div class="card">
+      <p>I enjoy hiking on mountains,challenging myself to do the extreme and love to explore philosophy of life.</p>
+    </div>
+    <div class="card">
+      <p>In my free time, I love listening to rock genre music and editing videos.</p>
+    </div>
+  </section>
+
+  <script>
+    function showPage(pageId) {
+      document.querySelectorAll("section").forEach(sec => sec.classList.remove("active"));
+      document.getElementById(pageId).classList.add("active");
+    }
+
+    const bubbleContainer = document.querySelector(".bubbles");
+    for (let i = 0; i < 20; i++) {
+      let bubble = document.createElement("div");
+      let size = Math.random() * 50 + 20; // 20px - 70px
+      bubble.classList.add("bubble");
+      bubble.style.width = `${size}px`;
+      bubble.style.height = `${size}px`;
+      bubble.style.left = `${Math.random() * 100}%`;
+      bubble.style.animationDuration = `${10 + Math.random() * 15}s`;
+      bubbleContainer.appendChild(bubble);
+    }
+  </script>
+
+</body>
+</html>
+
